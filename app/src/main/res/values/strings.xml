@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Cryptocurrency Converter</string>
+    <string name="fromHint">From</string>
+    <string name="toHint">To</string>
+    <string name="convertText">Convert</string>
+    <string name="refreshText">Refresh Rates</string>
+
+
+    <string-array name="coins_array">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>CAD</item>
+        <item>BTC</item>
+        <item>ETH</item>
+        <item>XRP</item>
+        <item>LTC</item>
+    </string-array>
+    <string name="coinPrompt">Choose a currency</string>
+</resources>
