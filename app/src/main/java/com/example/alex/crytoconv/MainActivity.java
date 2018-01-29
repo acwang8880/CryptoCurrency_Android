@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!fromText.getText().toString().equals("")) {
                     Double fromVal = (Double) Double.parseDouble(fromText.getText().toString());
-//                Double toVal = (Double) Double.parseDouble(toText.getText().toString());
                     String fromCoin = (String) spinnerFrom.getSelectedItem().toString();
                     String toCoin = (String) spinnerTo.getSelectedItem().toString();
                     int fromIndex = (int) spinnerFrom.getSelectedItemPosition();
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     toText.setText(result.toString());
 
                 } else {
-                    Toast.makeText(MainActivity.this, "Empty \"From\" value.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Empty \"From\" value.\nPut something there!", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -117,19 +116,6 @@ public class MainActivity extends AppCompatActivity {
                         for (int i = 0; i < sample.length; i++) {
                             String[] coinEntry = sample[i].split(":");
                             Log.i("CoinRates from internet", coinEntry[0].replace("{", "") + " " + coinEntry[1].replace("}",""));
-//                            if (coinEntry[0].equals("EUR")) {
-//                                rates[1]
-//                            } else if (coinEntry[0].equals("CAD")) {
-//
-//                            } else if (coinEntry[0].equals("BTC")) {
-//
-//                            } else if (coinEntry[0].equals("ETH")) {
-//
-//                            } else if (coinEntry[0].equals("XRP")) {
-//
-//                            } else if (coinEntry[0].equals("LTE")) {
-//
-//                            }
                             rates[i+1] = Double.parseDouble(coinEntry[1].replace("}",""));
                         }
                         strBuilder.append(line).append("\n");
@@ -147,47 +133,18 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(String response) {
             if (response == null) {
-                StringBuilder what = new StringBuilder();
-
-                for (int i = 0; i < rates.length; i++) {
-                    what.append(rates[i] + " ");
-                }
-                response = what.toString();
+//                StringBuilder what = new StringBuilder();
+//
+//                for (int i = 0; i < rates.length; i++) {
+//                    what.append(rates[i] + " ");
+//                }
+//                response = what.toString();
+//
+                response = "Update Failed.";
             }
             progressBar.setVisibility(View.GONE);
-            responseView.setText(response);
+//            responseView.setText(response);
+            Toast.makeText(MainActivity.this, "Refreshed Rates!", Toast.LENGTH_SHORT).show();
         }
-    }
-    public void readJsonStream(InputStream in) throws IOException {
-        JsonReader reader = new JsonReader(new InputStreamReader(in));
-        try {
-            readMessage(reader);
-        } finally {
-            reader.close();
-        }
-    }
-
-    public void readMessage(JsonReader reader) throws IOException {
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("EUR")) {
-                rates[1] = reader.nextLong();
-            } else if (name.equals("CAD")) {
-                rates[2] = reader.nextLong();
-            } else if (name.equals("BTC")) {
-                rates[3] = reader.nextLong();
-            } else if (name.equals("ETH")) {
-                rates[4] = reader.nextLong();
-            } else if (name.equals("XRP")) {
-                rates[5] = reader.nextLong();
-            } else if (name.equals("LTC")) {
-                rates[6] = reader.nextLong();
-            } else {
-                reader.skipValue();
-            }
-        }
-        Toast.makeText(MainActivity.this, rates.toString(), Toast.LENGTH_SHORT).show();
-        reader.endObject();
     }
 }
