@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     final String API_URL = "https://min-api.cryptocompare.com/data/price?";
 //    {USD: 1 "EUR":0.8065,"CAD":1.24,"BTC":0.00008842,"ETH":0.0008507,"XRP":0.7813,"LTC":0.005528}
-    static double[] rates = new double[] {1.0, 0.8065, 1.24, 0.00008842, 0.0008507, 0.7813, 0.005528};
+    static double[] rates = new double[] {1.0, 0.8065, 1.24, 0.00009, 0.0008507, 0.7813, 0.005528};
 //    static double[] rates = new double[6];
 
     @Override
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     int toIndex = (int) spinnerTo.getSelectedItemPosition();
 
                     Toast.makeText(MainActivity.this,"From: " + fromCoin + "\n" +
-                            "To: " + toCoin + " " + toIndex, Toast.LENGTH_SHORT).show();
+                            "To: " + toCoin, Toast.LENGTH_SHORT).show();
 
                     Double result;
                     // Calc val fromCoin to USD
